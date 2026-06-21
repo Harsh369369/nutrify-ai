@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #f3f4f6; /* Gray background on desktop */
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Full-screen responsive app container */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F7F9F8;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Remove default focus ring and replace with custom styling */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #1D9E75;
+  box-shadow: 0 0 0 2px rgba(29, 158, 117, 0.15);
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Swipeable slider animation helpers */
+.swipe-transition {
+  transition: transform 0.3s ease-out;
+}
