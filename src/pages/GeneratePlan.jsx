@@ -25,6 +25,8 @@ const loadingTexts = [
 const GeneratePlan = () => {
   const { 
     user, 
+    profile,
+    loading: authLoading,
     googleLogin, 
     guestProfile, 
     guestPlan, 
@@ -79,7 +81,13 @@ const GeneratePlan = () => {
   };
 
   useEffect(() => {
-    // If not logged in and no guest profile calculated, go back to home page
+    if (authLoading) return;
+
+    if (user && !profile) {
+      navigate('/setup', { replace: true });
+      return;
+    }
+
     if (!user && !guestProfile) {
       navigate('/', { replace: true });
       return;
@@ -90,7 +98,7 @@ const GeneratePlan = () => {
     return () => {
       if (textIntervalRef.current) clearInterval(textIntervalRef.current);
     };
-  }, [user, guestProfile, navigate]);
+  }, [user, profile, authLoading, guestProfile, navigate]);
 
   const parsePlan = (txt) => {
     try {

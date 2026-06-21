@@ -36,7 +36,7 @@ const MyPlan = () => {
 
     try {
       await api.delete(`/plan/${id}`);
-      setPlans(plans.filter((p) => p._id !== id));
+      setPlans(plans.filter((p) => p.id !== id));
       if (expandedPlanId === id) setExpandedPlanId(null);
     } catch (err) {
       console.error(err);
@@ -81,7 +81,7 @@ const MyPlan = () => {
         ) : (
           <div className="space-y-4">
             {plans.map((plan) => {
-              const isExpanded = expandedPlanId === plan._id;
+              const isExpanded = expandedPlanId === plan.id;
               const parsedData = parsePlan(plan.planText);
               const dateStr = new Date(plan.createdAt).toLocaleDateString(undefined, {
                 weekday: 'short',
@@ -92,12 +92,12 @@ const MyPlan = () => {
 
               return (
                 <div
-                  key={plan._id}
+                  key={plan.id}
                   className="bg-white rounded-3xl border border-gray-100 shadow-card overflow-hidden transition-all duration-300"
                 >
                   {/* Header click triggers expand */}
                   <div
-                    onClick={() => toggleExpand(plan._id)}
+                    onClick={() => toggleExpand(plan.id)}
                     className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-50/50 transition-colors"
                   >
                     <div className="flex items-center gap-3">
@@ -116,7 +116,7 @@ const MyPlan = () => {
 
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={(e) => handleDelete(plan._id, e)}
+                        onClick={(e) => handleDelete(plan.id, e)}
                         className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors focus:outline-none"
                       >
                         <Trash2 size={16} />

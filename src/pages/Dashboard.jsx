@@ -8,7 +8,7 @@ import api from '../api';
 import { Flame, Dumbbell, Wheat, Droplet, Sparkles, ChevronRight } from 'lucide-react';
 
 const Dashboard = () => {
-  const { user, macros, profile } = useAuth();
+  const { user, macros, profile, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [latestPlan, setLatestPlan] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -37,8 +37,15 @@ const Dashboard = () => {
   const waterProgressPct = Math.min((waterIntake / 2500) * 100, 100);
 
   useEffect(() => {
+    if (authLoading) return;
+
     if (!user) {
       navigate('/', { replace: true });
+      return;
+    }
+
+    if (!profile) {
+      navigate('/setup', { replace: true });
       return;
     }
 
@@ -55,7 +62,7 @@ const Dashboard = () => {
       }
     };
     fetchLatestPlan();
-  }, [user, navigate]);
+  }, [user, profile, authLoading, navigate]);
 
   const getGreeting = () => {
     const hr = new Date().getHours();

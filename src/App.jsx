@@ -108,6 +108,18 @@ function AppContent() {
         {/* Wildcard Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <a 
+        href="https://digitalheroesco.com" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-20 md:bottom-6 right-4 z-50 bg-gradient-to-r from-primary to-primary-dark text-white border border-white/20 shadow-[0_6px_20px_rgba(29,158,117,0.45)] hover:shadow-[0_8px_25px_rgba(29,158,117,0.65)] hover:scale-105 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 transition-all duration-300 px-5 py-2.5 rounded-full text-xs font-bold flex items-center gap-2 cursor-pointer select-none tracking-wide"
+      >
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+        </span>
+        Built for Digital Heroes
+      </a>
     </div>
   );
 }
